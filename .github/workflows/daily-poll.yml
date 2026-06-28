@@ -1,20 +1,41 @@
-name: Daily poll v2
+name: Morning Routine
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 0 * * *"
+    - cron: "30 23 * * *"
 
 jobs:
   send:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Telegram Poll
+      - name: Send Morning Routine
         run: |
-          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendPoll" \
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
           -d chat_id="${{ secrets.CHAT_ID }}" \
-          -d question="📅 Aaj ka Self Challenge complete hua?" \
-          -d options='["✅ 100% Complete","🟢 75% Complete","🟡 50% Complete","❌ Nahi Hua"]' \
-          -d is_anonymous=false \
-          -d allows_multiple_answers=false
+          --data-urlencode text="🌅 GOOD MORNING - ROUTINE 210 DAYS
+
+⏰ Shift 1 (5:30 AM)
+✅ Wake Up
+✅ Fresh Up
+✅ Water
+✅ Exercise
+✅ Ready for Study
+
+📘 Shift 2 (6:00 AM - 10:30 AM)
+• Technical Basic Subjects
+
+📚 Shift 3 (12:00 PM - 4:00 PM)
+• General Study
+• PYQs
+• Revision
+
+🎯 Shift 4 (4:15 PM - 6:00 PM)
+• Tuition / SSC JE
+
+🔥 Shift 5 (7:15 PM - 11:45 PM)
+• Technical Major Subjects
+• Revision
+
+💯 Today's Goal: Complete all 5 Shifts."
