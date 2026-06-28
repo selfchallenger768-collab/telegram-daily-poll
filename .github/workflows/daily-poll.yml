@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Telegram Message
+      - name: Send Telegram Poll
         run: |
-          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendPoll" \
           -d chat_id="${{ secrets.CHAT_ID }}" \
-          -d text="✅ Test successful! Your GitHub Action is working."
+          -d question="📅 Aaj ka Self Challenge complete hua?" \
+          -d options='["✅ 100% Complete","🟢 75% Complete","🟡 50% Complete","❌ Nahi Hua"]' \
+          -d is_anonymous=false \
+          -d allows_multiple_answers=false
