@@ -1,4 +1,4 @@
-name: Daily Routine
+name: Daily poll v2
 
 on:
   workflow_dispatch:
