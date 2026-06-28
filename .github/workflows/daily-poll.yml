@@ -13,7 +13,7 @@ jobs:
       - name: Send Morning Routine
         run: |
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
-          -d chat_id="${{ secrets.CHAT_ID }}" \
+          -d "chat_id=${{ secrets.CHAT_ID }}" \
           --data-urlencode "text=🌅 GOOD MORNING - ROUTINE 210 DAYS
 
 ⏰ Shift 1 (5:30 AM)
