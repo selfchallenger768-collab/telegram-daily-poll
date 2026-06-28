@@ -12,9 +12,8 @@ jobs:
     steps:
       - name: Send Morning Routine
         run: |
-          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
-          -d "chat_id=${{ secrets.CHAT_ID }}" \
-          --data-urlencode "text=🌅 GOOD MORNING - ROUTINE 210 DAYS
+          MESSAGE=$(cat <<'EOF'
+🌅 GOOD MORNING - ROUTINE 210 DAYS
 
 ⏰ Shift 1 (5:30 AM)
 ✅ Wake Up
@@ -38,4 +37,10 @@ jobs:
 • Technical Major Subjects
 • Revision
 
-💯 Today's Goal: Complete All 5 Shifts."
+💯 Today's Goal: Complete All 5 Shifts.
+EOF
+)
+
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
+            -d "chat_id=${{ secrets.CHAT_ID }}" \
+            --data-urlencode "text=$MESSAGE"
